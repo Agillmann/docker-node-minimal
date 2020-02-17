@@ -1,0 +1,31 @@
+version: '3'
+services:
+  web:
+    build: nginx/.
+    restart: always 
+    ports:
+    - "8080:80"
+    depends_on: 
+    - script
+    - database
+  script:
+    build: .
+    restart: always 
+    depends_on: 
+    - database
+  database:
+    image: "mongo" 
+    container_name: "mongo"
+    environment: 
+    - MONGO_INITDB_DATABASE=mongo-test
+    - MONGO_INITDB_ROOT_USERNAME=bomzie
+    - MONGO_INITDB_ROOT_PASSWORD=gigi
+    volumes:
+    - "./app/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js"
+    - "mongo-volume:/data/db"
+    ports:
+    - "27017:27017"
+volumes:
+  "mongo-volume": {}
+
+
