@@ -1,10 +1,10 @@
 db.createUser({
-  user: "bomzie",
-  pwd: "gigi",
+  user: "username",
+  pwd: "password",
   roles: [
     {
       role: "readWrite",
       db: "mongo-test"
     }
   ]
-})
+});
