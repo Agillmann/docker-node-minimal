@@ -32,8 +32,6 @@ app.get("/user-create", (req, res) => {
   res.send("User created \n");
 });
 
-app.listen(PORT, async function(dbConnect) {
-  (await dbConnect)
-    ? console.log(`Server listening on port ${PORT}`)
-    : console.log(`Server listening on port ${PORT} and MongoDb connected`);
+app.listen( PORT, () => {
+  console.log(`Server listening on port ${PORT}`)
 });
